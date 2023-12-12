@@ -1,0 +1,186 @@
+swagger: '2.0'
+info:
+  title: Cerificate Authority API
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+basePath: /cagw/v1/certificate-authorities
+schemes:
+  - https
+security:
+  - noAuth
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /{ca_id}/enrollments:
+    post:
+      summary: Get a Certificate
+      tags:
+        - enrollment
+      operationId: NewCertRequest
+      parameters:
+        - name: ca_id
+          in: path
+          description: CA ID of the certificate
+          required: true
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: Certificate request
+          schema:
+            $ref: '#/definitions/NewCertificateRequest'
+      responses:
+        '200':
+          description: Successful enrollment
+          schema:
+            $ref: '#/definitions/CertificateEx'
+        '201':
+          description: Enrollment accepted
+          schema:
+            $ref: '#/definitions/CertificateEx'
+        '400':
+          description: Invalid request parameters
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Resource was not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal Error on the gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '501':
+          description: Operation is not implemented on this gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Problem with the request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+  /{ca_id}/certificates/{serial_no}:
+    get:
+      summary: Get a Certificate based on serial number
+      tags:
+        - getCertificate
+      operationId: GetCertificate
+      parameters:
+        - name: ca_id
+          in: path
+          description: CA ID of the certificate
+          required: true
+          type: string
+        - name: serial_no
+          in: path
+          description: Serial number of the certificate
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/CertificateEx'
+        '400':
+          description: Invalid request parameters
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Resource was not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal Error on the gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '501':
+          description: Operation is not implemented on this gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Problem with the request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+  /{ca_id}/certificates/{serial_no}/actions:
+    post:
+      summary: Take an action on certificate
+      tags:
+        - actionOnCertificate
+      operationId: ActionOnCertificate
+      parameters:
+        - name: ca_id
+          in: path
+          description: CA ID of the certificate
+          required: true
+          type: string
+        - name: serial_no
+          in: path
+          description: Serial number of the certificate
+          required: true
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: Certificate request
+          schema:
+            $ref: '#/definitions/ActionOnCertificate'
+      responses:
+        '200':
+          description: Action Complete
+          schema:
+            $ref: '#/definitions/CertificateEx'
+        '201':
+          description: Action created
+          schema:
+            $ref: '#/definitions/CertificateEx'
+        '202':
+          description: Action Accepted
+          schema:
+            $ref: '#/definitions/CertificateEx'
+        '400':
+          description: Invalid request parameters
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Resource was not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal Error on the gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '501':
+          description: Operation is not implemented on this gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Problem with the request
+          schema:
