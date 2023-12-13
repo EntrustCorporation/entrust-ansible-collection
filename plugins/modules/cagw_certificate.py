@@ -852,7 +852,7 @@ def main():
             ['request_type', 'get', ['path', 'serial_no']],
             ['enrollment_format', 'X509', ['csr']],
             ['enrollment_format', 'PKCS12', ['p12_protection_password', 'dn']],
-            ['connector_name', 'ECS', ['requester_name', 'requester_email', 'requester_phone']],
+            ['connector_name', 'ECS', ['requester_name', 'requester_email']],
         )
     )
     if not CRYPTOGRAPHY_FOUND or CRYPTOGRAPHY_VERSION < LooseVersion(MINIMAL_CRYPTOGRAPHY_VERSION):
