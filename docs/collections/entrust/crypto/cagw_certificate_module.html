@@ -600,7 +600,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <div class="ansibleOptionAnchor" id="parameter-requester_email"></div><p class="ansible-option-title" id="ansible-collections-entrust-crypto-cagw-certificate-module-parameter-requester-email"><strong>requester_email</strong></p>
 <a class="ansibleOptionLink" href="#parameter-requester_email" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>The requester email to associate with certificate tracking information and receive delivery and expiry notices for the certificate.</p>
+<td><div class="ansible-option-cell"><p>-The requester email to associate with certificate tracking information and receive delivery and expiry notices for the certificate. - If requester_email is not provided when <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-entrust-crypto-cagw-certificate-module-parameter-connector-name"><span class="std std-ref"><span class="pre">connector_name=ECS</span></span></a></code>, module will be failed.</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -608,6 +608,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <a class="ansibleOptionLink" href="#parameter-requester_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The requester name to associate with certificate tracking information.</p>
+<p>If requester_name is not provided when <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-entrust-crypto-cagw-certificate-module-parameter-connector-name"><span class="std std-ref"><span class="pre">connector_name=ECS</span></span></a></code>, module will be failed.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -782,7 +783,6 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">    </span><span class="nt">connector_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ECS</span>
 <span class="w">    </span><span class="nt">requester_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">John-Clark</span>
 <span class="w">    </span><span class="nt">requester_email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john.clark@example.com</span>
-<span class="w">    </span><span class="nt">requester_phone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">613-222-2222</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Request a new SSL certificate from ECS via CAGW with optional custom_field parameters.  Will request a new certificate</span>
 <span class="w">  </span><span class="nt">entrust.crypto.cagw_certificate</span><span class="p">:</span>
@@ -798,7 +798,6 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">    </span><span class="nt">connector_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ECS</span>
 <span class="w">    </span><span class="nt">requester_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">John-Clark</span>
 <span class="w">    </span><span class="nt">requester_email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john.clark@example.com</span>
-<span class="w">    </span><span class="nt">requester_phone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">613-222-2222</span>
 <span class="w">    </span><span class="nt">custom_fields</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">text1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Admin</span>
 <span class="w">      </span><span class="nt">text2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Invoice 25</span>

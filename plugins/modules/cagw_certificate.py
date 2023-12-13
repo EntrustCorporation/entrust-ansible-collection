@@ -175,11 +175,15 @@ options:
         description: Free form tracking information to attach to the record for the certificate.
         type: str
     requester_name:
-        description: The requester name to associate with certificate tracking information.
+        description:
+            - The requester name to associate with certificate tracking information.
+            - If requester_name is not provided when O(connector_name=ECS), module will be failed.
         type: str
     requester_email:
-        description: The requester email to associate with certificate tracking information and
-                     receive delivery and expiry notices for the certificate.
+        description:
+            -The requester email to associate with certificate tracking information and
+             receive delivery and expiry notices for the certificate.
+            - If requester_email is not provided when O(connector_name=ECS), module will be failed.
         type: str
     requester_phone:
         description: The requester phone number to associate with certificate tracking information.
@@ -382,7 +386,6 @@ EXAMPLES = r'''
     connector_name: ECS
     requester_name: John-Clark
     requester_email: john.clark@example.com
-    requester_phone: 613-222-2222
 
 - name: Request a new SSL certificate from ECS via CAGW with optional custom_field parameters.  Will request a new certificate
   entrust.crypto.cagw_certificate:
@@ -398,7 +401,6 @@ EXAMPLES = r'''
     connector_name: ECS
     requester_name: John-Clark
     requester_email: john.clark@example.com
-    requester_phone: 613-222-2222
     custom_fields:
       text1: Admin
       text2: Invoice 25
