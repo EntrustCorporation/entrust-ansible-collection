@@ -1,0 +1,63 @@
+---
+# vars file for galaxy-edc-roles
+
+cagw_certificate_working_path: ~/entrust-ansible-collection/roles/common
+# Values used for private key generation
+cagw_certificate_privatekey_path: '{{ cagw_certificate_working_path }}/files/prvkey.pem'
+cagw_certificate_privatekey_passphrase: Passphrase2525!
+
+# Values used for the CSR generation
+cagw_certificate_csr_path: '{{ cagw_certificate_working_path }}/files/csr.pem'
+cagw_certificate_common_name: cn
+cagw_certificate_organization_name: org_name
+cagw_certificate_locality_name: Kanata
+cagw_certificate_country_name: CA
+cagw_certificate_state_or_province_name: ontario
+
+cagw_certificate_entrust_host: 1.1.1.1
+cagw_certificate_entrust_port: 8081
+cagw_certificate_remaining_days: 30
+cagw_certificate_force: true
+cagw_certificate_entrust_text1: Admin
+cagw_certificate_entrust_text2: Invoice 25
+cagw_certificate_entrust_number1: 342
+cagw_certificate_entrust_date1: 2018-01-01
+cagw_certificate_entrust_email1: sales@ansible.testcertificates.com
+cagw_certificate_validate_certs: false
+
+# PEM encoded certificate and key information
+# Remember to replace the contents of these files with your actual client keypair,
+# or change this path to point to another location where they can be found.
+cagw_certificate_api_cert: '{{ cagw_certificate_working_path }}/files/cert.pem'
+cagw_certificate_api_cert_key: '{{ cagw_certificate_working_path }}/files/key.pem'
+cagw_certificate_api_specification_path: '{{ cagw_certificate_working_path }}/files/cagw-api.yaml'
+cagw_certificate_dn: /C=CA/O=/CN=example.com
+cagw_certificate_ca_id: ca_id
+cagw_certificate_profile_id: profile_id
+cagw_certificate_cert_path: '{{ cagw_certificate_working_path }}/files/issuedcert.pem'
+cagw_certificate_request_type: new
+cagw_certificate_enrollment_format: X509
+
+# Example 2
+# Below can be the parameters for subjectAltName
+cagw_certificate_dnsname: example.com
+cagw_certificate_ipaddress: 1.1.1.1
+cagw_certificate_directoryname: cn=john doe,o=example inc,c=us
+cagw_certificate_uri: http://example.com/
+
+# Example 3
+cagw_certificate_serialnumber: 318faaed6e
+
+# Example 4
+cagw_certificate_p12_password: Password@2018
+
+# When Connection type is ECS then below arguments are passed to ECS CA
+# Example 5
+cagw_certificate_requester_name: John Clark
+cagw_certificate_requester_email: john.clark@example.com
+cagw_certificate_requester_phone: 1-613-555-5555  # e.g. 16135555555
+cagw_certificate_tracking_info: 3-232-32
+
+# Example 6
+cagw_certificate_action_type: RevokeAction
+cagw_certificate_action_reason: unspecified

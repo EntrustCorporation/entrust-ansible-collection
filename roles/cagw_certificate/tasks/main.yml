@@ -1,0 +1,132 @@
+---
+# tasks file for certificate enrollment from CA via Entrust CAGW
+
+## SETUP CSR TO REQUEST
+- name: Generate a 2048 bit RSA private key
+  community.crypto.openssl_privatekey:
+    path: '{{ cagw_certificate_privatekey_path }}'
+    passphrase: '{{ cagw_certificate_privatekey_passphrase }}'
+    cipher: auto
+    type: RSA
+    size: 2048
+
+- name: Generate a certificate signing request using the generated key
+  community.crypto.openssl_csr:
+    path: '{{ cagw_certificate_csr_path }}'
+    privatekey_path: '{{ cagw_certificate_privatekey_path }}'
+    privatekey_passphrase: '{{ cagw_certificate_privatekey_passphrase }}'
+    common_name: '{{ cagw_certificate_common_name }}'
+    organization_name: '{{ cagw_certificate_organization_name | default(omit) }}'
+    locality_name: '{{ cagw_certificate_locality_name }}'
+    country_name: '{{ cagw_certificate_country_name | default(omit) }}'
+    state_or_province_name: '{{ cagw_certificate_state_or_province_name | default(omit) }}'
+    digest: sha256
+
+- name: Request a signed certificate from CA(SM/PKIaaS/MSCA) via Entrust CAGW with bare minimum parameters
+  entrust.crypto.cagw_certificate:
+    path: '{{ cagw_certificate_cert_path }}'
+    csr: "{{ cagw_certificate_csr_path }}"
+    cagw_api_client_cert_path: '{{ cagw_certificate_api_cert }}'
+    cagw_api_client_cert_key_path: '{{ cagw_certificate_api_cert_key }}'
+    host: '{{ cagw_certificate_entrust_host }}'
+    port: '{{ cagw_certificate_entrust_port }}'
+    connector_name: SM
+    certificate_authority_id: '{{ cagw_certificate_ca_id }}'
+    certificate_profile_id: '{{ cagw_certificate_profile_id }}'
+    request_type: '{{ cagw_certificate_request_type }}'
+    enrollment_format: '{{ cagw_certificate_enrollment_format }}'
+    cagw_api_specification_path: '{{ cagw_certificate_api_specification_path }}'
+    force: '{{ cagw_certificate_force }}'
+    validate_certs: '{{ cagw_certificate_validate_certs }}'
+
+- name: Request a signed certificate from SM via Entrust CAGW with subjectAltName and custom_field parameters
+  entrust.crypto.cagw_certificate:
+    path: '{{ cagw_certificate_cert_path }}'
+    csr: '{{ cagw_certificate_csr_path }}'
+    host: '{{ cagw_certificate_entrust_host }}'
+    port: '{{ cagw_certificate_entrust_port }}'
+    certificate_authority_id: '{{ cagw_certificate_ca_id }}'
+    certificate_profile_id: '{{ cagw_certificate_profile_id }}'
+    cagw_api_client_cert_path: '{{ cagw_certificate_api_cert }}'
+    cagw_api_client_cert_key_path: '{{ cagw_certificate_api_cert_key }}'
+    cagw_api_specification_path: '{{ cagw_certificate_api_specification_path }}'
+    request_type: '{{ cagw_certificate_request_type }}'
+    enrollment_format: '{{ cagw_certificate_enrollment_format }}'
+    connector_name: SM
+    subject_alt_name:
+      dNSName: '{{ cagw_certificate_dnsname }}'
+      iPAddress: '{{ cagw_certificate_ipaddress }}'
+      directoryName: '{{ cagw_certificate_directoryname }}'
+      uniformResourceIdentifier: '{{ cagw_certificate_uri }}'
+    custom_fields:
+      text1: '{{ cagw_certificate_entrust_text1 }}'
+      text2: '{{ cagw_certificate_entrust_text2 }}'
+      number1: '{{ cagw_certificate_entrust_number1 }}'
+      date1: '{{ cagw_certificate_entrust_date1 }}'
+      email1: '{{ cagw_certificate_entrust_email1 }}'
+    force: '{{ cagw_certificate_force }}'
+    validate_certs: '{{ cagw_certificate_validate_certs }}'
+
+- name: Get an already issued certificate from CAGW with valid serial num in hexadecimal format
+  entrust.crypto.cagw_certificate:
+    path: '{{ cagw_certificate_cert_path }}'
+    cagw_api_client_cert_path: '{{ cagw_certificate_api_cert }}'
+    cagw_api_client_cert_key_path: '{{ cagw_certificate_api_cert_key }}'
+    cagw_api_specification_path: '{{ cagw_certificate_api_specification_path }}'
+    host: '{{ cagw_certificate_entrust_host }}'
+    port: '{{ cagw_certificate_entrust_port }}'
+    certificate_authority_id: '{{ cagw_certificate_ca_id }}'
+    request_type: get
+    serial_no: "{{ cagw_certificate_serialnumber }}"
+    validate_certs: '{{ cagw_certificate_validate_certs }}'
+
+- name: Request a PKCS12 from Entrust CAGW
+  entrust.crypto.cagw_certificate:
+    path: '{{ cagw_certificate_cert_path }}'
+    dn: '{{ cagw_certificate_dn }}'
+    host: '{{ cagw_certificate_entrust_host }}'
+    port: '{{ cagw_certificate_entrust_port }}'
+    certificate_authority_id: '{{ cagw_certificate_ca_id }}'
+    certificate_profile_id: '{{ cagw_certificate_profile_id }}'
+    cagw_api_client_cert_path: '{{ cagw_certificate_api_cert }}'
+    cagw_api_client_cert_key_path: '{{ cagw_certificate_api_cert_key }}'
+    cagw_api_specification_path: '{{ cagw_certificate_api_specification_path }}'
+    request_type: '{{ cagw_certificate_request_type }}'
+    enrollment_format: PKCS12
+    connector_name: SM
+    p12_protection_password: '{{ cagw_certificate_p12_password }}'
+    force: '{{ cagw_certificate_force }}'
+    validate_certs: '{{ cagw_certificate_validate_certs }}'
+
+- name: Request a new SSL certificate from ECS via CAGW with bare minimum parameters.  Will request a new certificate
+  entrust.crypto.cagw_certificate:
+    path: '{{ cagw_certificate_cert_path }}'
+    csr: '{{ cagw_certificate_csr_path }}'
+    host: '{{ cagw_certificate_entrust_host }}'
+    port: '{{ cagw_certificate_entrust_port }}'
+    certificate_authority_id: '{{ cagw_certificate_ca_id }}'
+    certificate_profile_id: '{{ cagw_certificate_profile_id }}'
+    cagw_api_client_cert_path: '{{ cagw_certificate_api_cert }}'
+    cagw_api_client_cert_key_path: '{{ cagw_certificate_api_cert_key }}'
+    cagw_api_specification_path: '{{ cagw_certificate_api_specification_path }}'
+    request_type: '{{ cagw_certificate_request_type }}'
+    enrollment_format: '{{ cagw_certificate_request_type }}'
+    connector_name: ECS
+    requester_name: '{{ cagw_certificate_requester_name }}'
+    requester_email: '{{ cagw_certificate_requester_email }}'
+    force: '{{ cagw_certificate_force }}'
+    validate_certs: '{{ cagw_certificate_validate_certs }}'
+
+- name: Take an action(HoldAction/UnholdAction/RevokeAction) on certificate already recieved from CAGW
+  entrust.crypto.cagw_certificate:
+    cagw_api_client_cert_path: '{{ cagw_certificate_api_cert }}'
+    cagw_api_client_cert_key_path: '{{ cagw_certificate_api_cert_key }}'
+    cagw_api_specification_path: '{{ cagw_certificate_api_specification_path }}'
+    host: '{{ cagw_certificate_entrust_host }}'
+    port: '{{ cagw_certificate_entrust_port }}'
+    certificate_authority_id: '{{ cagw_certificate_ca_id }}'
+    request_type: action
+    action_type: '{{ cagw_certificate_action_type }}'
+    action_reason: '{{ cagw_certificate_action_reason }}'
+    serial_no: "{{ cagw_certificate_serialnumber }}"
+    validate_certs: '{{ cagw_certificate_validate_certs }}'

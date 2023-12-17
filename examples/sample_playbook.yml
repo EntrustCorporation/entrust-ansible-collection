@@ -1,0 +1,6 @@
+---
+
+- name: Run roles sample playbook
+  hosts: localhost
+  roles:
+    - cagw_certificate

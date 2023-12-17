@@ -321,7 +321,7 @@ EXAMPLES = r'''
     csr: /etc/ssl/csr/ansible.com.csr
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     certificate_profile_id: profile_id
     request_type: new
     enrollment_format: X509
@@ -334,7 +334,7 @@ EXAMPLES = r'''
     csr: /etc/ssl/csr/ansible.com.csr
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     certificate_profile_id: profile_id
     request_type: new
     enrollment_format: X509
@@ -346,14 +346,14 @@ EXAMPLES = r'''
       directoryName: cn=john doe,o=example inc,c=us
       uniformResourceIdentifier: http://example.com/
       rfc822Name: server.example.com
-    validate_certs: False
+    validate_certs: false
 
 - name: Get an already issued certificate from CAGW with valid serial num in hexadecimal format
   entrust.crypto.cagw_certificate:
     path: /etc/ssl/crt/ansible.com.crt
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     request_type: get
     serial_no: 5b9ba13d
     cagw_api_specification_path: /etc/ssl/entrust/cagw-api.yaml
@@ -363,7 +363,7 @@ EXAMPLES = r'''
     path: /etc/ssl/crt/ansible.com.crt
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     certificate_profile_id: profile_id
     request_type: new
     enrollment_format: PKCS12
@@ -378,7 +378,7 @@ EXAMPLES = r'''
     csr: /etc/ssl/csr/ansible.com.csr
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     certificate_profile_id: profile_id
     request_type: new
     enrollment_format: X509
@@ -393,7 +393,7 @@ EXAMPLES = r'''
     csr: /etc/ssl/csr/ansible.com.csr
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     certificate_profile_id: profile_id
     request_type: new
     enrollment_format: X509
@@ -413,7 +413,7 @@ EXAMPLES = r'''
   entrust.crypto.cagw_certificate:
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     request_type: action
     action_type: HoldAction
     action_reason: unspecified
@@ -424,7 +424,7 @@ EXAMPLES = r'''
   entrust.crypto.cagw_certificate:
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     request_type: action
     action_type: UnholdAction
     action_reason: unspecified
@@ -435,13 +435,12 @@ EXAMPLES = r'''
   entrust.crypto.cagw_certificate:
     cagw_api_client_cert_path: /etc/ssl/entrust/cagw-client.crt
     cagw_api_client_cert_key_path: /etc/ssl/entrust/cagw-client.key
-    certificate_authority_id:  ca_id
+    certificate_authority_id: ca_id
     request_type: action
     action_type: RevokeAction
     action_reason: unspecified
     serial_no: 5b9ba13d
     cagw_api_specification_path: /etc/ssl/entrust/cagw-api.yaml
-
 '''
 
 RETURN = '''

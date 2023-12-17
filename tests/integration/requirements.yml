@@ -13,5 +13,5 @@
 #
 
 collections:
-- community.crypto
-- community.internal_test_tools
+  - community.crypto
+  - community.internal_test_tools
