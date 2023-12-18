@@ -497,12 +497,12 @@ import datetime
 import os
 import traceback
 
-from ansible_collections.community.crypto.plugins.module_utils.version import LooseVersion
+from ansible.module_utils.compat.version import LooseVersion
 
 from ansible.module_utils.basic import AnsibleModule, missing_required_lib
 from ansible.module_utils._text import to_native
 
-from ansible_collections.community.crypto.plugins.module_utils.crypto.support import (
+from ansible_collections.entrust.crypto.plugins.module_utils.cagw.support import (
     load_certificate,
 )
 

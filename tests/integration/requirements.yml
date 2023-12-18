@@ -13,5 +13,3 @@
 #
 
 collections:
-  - community.crypto
-  - community.internal_test_tools
