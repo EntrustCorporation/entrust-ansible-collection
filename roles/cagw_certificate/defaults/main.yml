@@ -24,6 +24,7 @@ cagw_certificate_entrust_number1: 342
 cagw_certificate_entrust_date1: '2018-01-01'
 cagw_certificate_entrust_email1: sales@ansible.testcertificates.com
 cagw_certificate_validate_certs: false
+cagw_certificate_connector_name: SM
 
 # PEM encoded certificate and key information
 # Remember to replace the contents of these files with your actual client keypair,
