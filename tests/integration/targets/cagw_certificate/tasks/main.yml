@@ -120,10 +120,10 @@
         enrollment_format: '{{ example1_enrollment_format }}'
         connector_name: SM
         subject_alt_name:
-          dNSName: '{{ example2_dNSName }}'
-          iPAddress: '{{ example2_iPAddress }}'
-          directoryName: '{{ example2_directoryName }}'
-          uniformResourceIdentifier: '{{ example2_uniformResourceIdentifier }}'
+          dNSName: '{{ example2_dnsname }}'
+          iPAddress: '{{ example2_ipaddress }}'
+          directoryName: '{{ example2_directoryname }}'
+          uniformResourceIdentifier: '{{ example2_uri }}'
         custom_fields:
           text1: '{{ entrust_text1 }}'
           text2: '{{ entrust_text2 }}'
