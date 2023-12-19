@@ -39,7 +39,7 @@ ansible-galaxy collection install -r requirements.yml
 
 # Contributing
 
-If you want to develop new content or improve on this collection, please open an issue or create a pull request.All contributions are welcome!
+If you want to develop new content or improve on this collection, please open an issue or create a pull request. All contributions are welcome!
 
 # Release Notes
 
