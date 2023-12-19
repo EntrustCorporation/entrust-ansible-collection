@@ -33,7 +33,7 @@ force: true
 entrust_text1: Admin
 entrust_text2: Invoice 25
 entrust_number1: 342
-entrust_date1: 2018-01-01
+entrust_date1: '2018-01-01'
 entrust_email1: sales@ansible.testcertificates.com
 validate_certs: false
 entrust_host: 1.1.1.1
