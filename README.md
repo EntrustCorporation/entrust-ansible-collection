@@ -1,7 +1,7 @@
 # Ansible Collection - entrust.crypto
 
 Request SSL/TLS certificates with the Certificate Authority Gateway (CAGW) API.
-You can find documentation for the collection https://entrustcorporation.github.io/entrust-ansible-collection/
+You can find documentation for the collection [here](https://entrustcorporation.github.io/entrust-ansible-collection/)
 
 ## Ansible version compatibility
 
@@ -39,4 +39,4 @@ ansible-galaxy collection install -r requirements.yml
 
 # License
 
-See the https://github.com/EntrustCorporation/entrust-ansible-collection/blob/main/LICENSE for more information.
+See the [license](https://github.com/EntrustCorporation/entrust-ansible-collection/blob/main/LICENSE) for more information
