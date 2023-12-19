@@ -1,13 +1,13 @@
 ---
 # vars file for galaxy-edc-roles
 
-cagw_certificate_working_path: ~/entrust-ansible-collection/roles/cagw_certificate
+cagw_certificate_working_path: /tmp
 # Values used for private key generation
-cagw_certificate_privatekey_path: '{{ cagw_certificate_working_path }}/files/prvkey.pem'
+cagw_certificate_privatekey_path: '{{ cagw_certificate_working_path }}/prvkey.pem'
 cagw_certificate_privatekey_passphrase: Passphrase2525!
 
 # Values used for the CSR generation
-cagw_certificate_csr_path: '{{ cagw_certificate_working_path }}/files/csr.pem'
+cagw_certificate_csr_path: '{{ cagw_certificate_working_path }}/csr.pem'
 cagw_certificate_common_name: cn
 cagw_certificate_organization_name: org_name
 cagw_certificate_locality_name: Kanata
@@ -28,13 +28,13 @@ cagw_certificate_validate_certs: false
 # PEM encoded certificate and key information
 # Remember to replace the contents of these files with your actual client keypair,
 # or change this path to point to another location where they can be found.
-cagw_certificate_api_cert: '{{ cagw_certificate_working_path }}/files/cert.pem'
-cagw_certificate_api_cert_key: '{{ cagw_certificate_working_path }}/files/key.pem'
-cagw_certificate_api_specification_path: '{{ cagw_certificate_working_path }}/files/cagw-api.yaml'
-cagw_certificate_dn: /C=CA/O=/CN=example.com
+cagw_certificate_api_cert: '{{ cagw_certificate_working_path }}/cert.pem'
+cagw_certificate_api_cert_key: '{{ cagw_certificate_working_path }}/key.pem'
+cagw_certificate_api_specification_path: '{{ cagw_certificate_working_path }}/cagw-api.yaml'
+cagw_certificate_dn: CN=entrust.com,O=entrust,C=CA
 cagw_certificate_ca_id: ca_id
 cagw_certificate_profile_id: profile_id
-cagw_certificate_cert_path: '{{ cagw_certificate_working_path }}/files/issuedcert.pem'
+cagw_certificate_cert_path: '{{ cagw_certificate_working_path }}/issuedcert.pem'
 cagw_certificate_request_type: new
 cagw_certificate_enrollment_format: X509
 
@@ -46,10 +46,11 @@ cagw_certificate_directoryname: cn=john doe,o=example inc,c=us
 cagw_certificate_uri: http://example.com/
 
 # Example 3
-cagw_certificate_serialnumber: 318faaed6e
+cagw_certificate_serialnumber: 5e3661f26a408a3cb236923b531b
 
 # Example 4
 cagw_certificate_p12_password: Password@2018
+cagw_certificate_example4_profile_id: profile_id
 
 # When Connection type is ECS then below arguments are passed to ECS CA
 # Example 5

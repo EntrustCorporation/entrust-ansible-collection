@@ -87,7 +87,7 @@
     host: '{{ cagw_certificate_entrust_host }}'
     port: '{{ cagw_certificate_entrust_port }}'
     certificate_authority_id: '{{ cagw_certificate_ca_id }}'
-    certificate_profile_id: '{{ cagw_certificate_profile_id }}'
+    certificate_profile_id: '{{ cagw_certificate_example4_profile_id }}'
     cagw_api_client_cert_path: '{{ cagw_certificate_api_cert }}'
     cagw_api_client_cert_key_path: '{{ cagw_certificate_api_cert_key }}'
     cagw_api_specification_path: '{{ cagw_certificate_api_specification_path }}'
@@ -110,7 +110,7 @@
     cagw_api_client_cert_key_path: '{{ cagw_certificate_api_cert_key }}'
     cagw_api_specification_path: '{{ cagw_certificate_api_specification_path }}'
     request_type: '{{ cagw_certificate_request_type }}'
-    enrollment_format: '{{ cagw_certificate_request_type }}'
+    enrollment_format: '{{ cagw_certificate_enrollment_format }}'
     connector_name: ECS
     requester_name: '{{ cagw_certificate_requester_name }}'
     requester_email: '{{ cagw_certificate_requester_email }}'
