@@ -9,12 +9,14 @@
 ####################################################################
 
 ## Verify that integration_config was specified
-- name: Verify that integration_config was specified
-  ansible.builtin.assert:
-    that:
-      - cagw_api_client_cert_path is defined
-      - cagw_api_client_cert_key_path is defined
-      - entrust_cagw_api_specification_path is defined
+- name: Task block for integration.config
+  block:
+    - name: Task block for integration.config
+      ansible.builtin.assert:
+        that:
+          - cagw_api_client_cert_path is defined
+          - cagw_api_client_cert_key_path is defined
+          - entrust_cagw_api_specification_path is defined
 
 ## SET UP TEST ENVIRONMENT ########################################################################
 - name: Clear out the temporary directory for storing the API connection information
@@ -26,7 +28,7 @@
   ansible.builtin.file:
     path: '{{ tmpdir_path }}'
     state: directory
-    mode: '0600'
+    mode: '0744'
 
 - name: Copy the files needed for the connection to entrust API to the host
   ansible.builtin.copy:
@@ -67,10 +69,18 @@
     state_or_province_name: '{{ state_or_province_name | default(omit) }}'
     digest: sha256
 
-- name: Block of Entrust CAGW tasks
+- name: Generate a certificate signing request for Microsoft CA using the generated key
+  community.crypto.openssl_csr:
+    path: '{{ example11_csr_path }}'
+    privatekey_path: '{{ privatekey_path }}'
+    privatekey_passphrase: '{{ privatekey_passphrase }}'
+    subject: 'CN=sapnaMSCA,DC=igqatestca,DC=dev,DC=datacard,DC=com'
+    digest: sha256
+
+- name: Task block for Entrust CAGW tests
   block:
     - name: Request a signed certificate from SM via Entrust CAGW with bare minimum parameters
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         path: '{{ example1_cert_path }}'
         csr: '{{ csr_path }}'
         host: '{{ entrust_host }}'
@@ -87,7 +97,7 @@
         validate_certs: '{{ validate_certs }}'
       register: example1_result
 
-    - name: Assert example 1
+    - name: Assert for example 1
       ansible.builtin.assert:
         that:
           - example1_result is not failed
@@ -96,7 +106,7 @@
           - example1_result.message.message is match("Enrollment was successful.")
 
     - name: Request a signed certificate from SM via Entrust CAGW with subjectAltName and custom_field parameters
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         path: '{{ example2_cert_path }}'
         csr: '{{ csr_path }}'
         host: '{{ entrust_host }}'
@@ -110,10 +120,10 @@
         enrollment_format: '{{ example1_enrollment_format }}'
         connector_name: SM
         subject_alt_name:
-          dNSName: '{{ example2_dnsname }}'
-          iPAddress: '{{ example2_ipaddress }}'
-          directoryName: '{{ example2_directoryname }}'
-          uniformResourceIdentifier: '{{ example2_uri }}'
+          dNSName: '{{ example2_dNSName }}'
+          iPAddress: '{{ example2_iPAddress }}'
+          directoryName: '{{ example2_directoryName }}'
+          uniformResourceIdentifier: '{{ example2_uniformResourceIdentifier }}'
         custom_fields:
           text1: '{{ entrust_text1 }}'
           text2: '{{ entrust_text2 }}'
@@ -124,7 +134,7 @@
         validate_certs: '{{ validate_certs }}'
       register: example2_result
 
-    - name: Assert example 2
+    - name: Assert for example 2
       ansible.builtin.assert:
         that:
           - example2_result is not failed
@@ -133,7 +143,7 @@
           - example2_result.message.message is match("Enrollment was successful.")
 
     - name: Get an already issued certificate from CAGW with valid serial num in hexadecimal format
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         path: '{{ example3_cert_path }}'
         cagw_api_client_cert_path: '{{ entrust_cagw_api_cert }}'
         cagw_api_client_cert_key_path: '{{ entrust_cagw_api_cert_key }}'
@@ -146,14 +156,14 @@
         validate_certs: '{{ validate_certs }}'
       register: example3_result
 
-    - name: Assert example 3
+    - name: Assert for example 3
       ansible.builtin.assert:
         that:
           - example3_result is not failed
           - example3_result.cert_details.status is match("normal")
 
     - name: Request a PKCS12 from Entrust CAGW
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         path: '{{ example4_cert_path }}'
         dn: '{{ example4_dn }}'
         host: '{{ entrust_host }}'
@@ -171,7 +181,7 @@
         validate_certs: '{{ validate_certs }}'
       register: example4_result
 
-    - name: Assert example 4
+    - name: Assert for example 4
       ansible.builtin.assert:
         that:
           - example4_result is not failed
@@ -180,7 +190,7 @@
           - example4_result.message.message is match("Enrollment was successful.")
 
     - name: Request a new SSL certificate from ECS via CAGW with bare minimum parameters.  Will request a new certificate
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         path: '{{ example5_cert_path }}'
         csr: '{{ csr_path }}'
         host: '{{ entrust_host }}'
@@ -199,7 +209,7 @@
         validate_certs: '{{ validate_certs }}'
       register: example5_result
 
-    - name: Assert example 5
+    - name: Assert for example 5
       ansible.builtin.assert:
         that:
           - example5_result is not failed
@@ -208,7 +218,7 @@
           - example5_result.message.message is match("Enrollment was successful.")
 
     - name: Take an action(HoldAction) on certificate already recieved from CAGW
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         cagw_api_client_cert_path: '{{ entrust_cagw_api_cert }}'
         cagw_api_client_cert_key_path: '{{ entrust_cagw_api_cert_key }}'
         cagw_api_specification_path: '{{ cagw_api_specification_path }}'
@@ -222,14 +232,14 @@
         validate_certs: '{{ validate_certs }}'
       register: example6_result
 
-    - name: Assert example 6
+    - name: Assert for example 6
       ansible.builtin.assert:
         that:
           - example6_result is not failed
           - example6_result.cert_details.status is match("COMPLETED")
 
     - name: Take an action(UnholdAction) on certificate already recieved from CAGW
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         cagw_api_client_cert_path: '{{ entrust_cagw_api_cert }}'
         cagw_api_client_cert_key_path: '{{ entrust_cagw_api_cert_key }}'
         cagw_api_specification_path: '{{ cagw_api_specification_path }}'
@@ -243,14 +253,14 @@
         validate_certs: '{{ validate_certs }}'
       register: example7_result
 
-    - name: Assert example 7
+    - name: Assert for example 7
       ansible.builtin.assert:
         that:
           - example7_result is not failed
           - example7_result.cert_details.status is match("COMPLETED")
 
     - name: Take an action(RevokeAction) on certificate already recieved from CAGW
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         cagw_api_client_cert_path: '{{ entrust_cagw_api_cert }}'
         cagw_api_client_cert_key_path: '{{ entrust_cagw_api_cert_key }}'
         cagw_api_specification_path: '{{ cagw_api_specification_path }}'
@@ -264,14 +274,14 @@
         validate_certs: '{{ validate_certs }}'
       register: example8_result
 
-    - name: Assert example 8
+    - name: Assert for example 8
       ansible.builtin.assert:
         that:
           - example8_result is not failed
           - example8_result.cert_details.status is match("COMPLETED")
 
     - name: Get a revoked certificate from CAGW
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         path: '{{ example9_cert_path }}'
         cagw_api_client_cert_path: '{{ entrust_cagw_api_cert }}'
         cagw_api_client_cert_key_path: '{{ entrust_cagw_api_cert_key }}'
@@ -284,14 +294,14 @@
         validate_certs: '{{ validate_certs }}'
       register: example9_result
 
-    - name: Assert example 9
+    - name: Assert for example 9
       ansible.builtin.assert:
         that:
           - example9_result is not failed
           - example9_result.cert_details.status is match("revoked")
 
     - name: Enroll a certificate from PKIaas CA via Entrust CAGW
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         path: '{{ example10_cert_path }}'
         csr: '{{ csr_path }}'
         host: '{{ example10_entrust_host }}'
@@ -300,14 +310,14 @@
         request_type: '{{ example10_request_type }}'
         enrollment_format: '{{ example10_enrollment_format }}'
         connector_name: PKIaaS
-        dn: 'CN=testCert,O=FG Corp,OU=CHUB DEV,L=Gander,ST=Newfoundland and Labrador,C=CA'
+        dn: 'CN=SapnaTestCert,O=FG Corp,OU=CHUB DEV,L=Gander,ST=Newfoundland and Labrador,C=CA'
         cagw_api_client_cert_path: '{{ example10_cagw_api_cert }}'
         cagw_api_client_cert_key_path: '{{ example10_cagw_api_key }}'
         cagw_api_specification_path: '{{ cagw_api_specification_path }}'
         validate_certs: '{{ validate_certs }}'
       register: example10_result
 
-    - name: Assert example 10
+    - name: Assert for example 10
       ansible.builtin.assert:
         that:
           - example10_result is not failed
@@ -316,7 +326,7 @@
           - example10_result.message.message is match("Enrollment was successful.")
 
     - name: Enroll a certificate from Microsoft CA via Entrust CAGW
-      cagw_certificate:
+      entrust.crypto.cagw_certificate:
         path: '{{ example11_cert_path }}'
         csr: '{{ example11_csr_path }}'
         host: '{{ example11_entrust_host }}'
@@ -332,7 +342,7 @@
         validate_certs: '{{ validate_certs }}'
       register: example11_result
 
-    - name: Assert example 11
+    - name: Assert for example 11
       ansible.builtin.assert:
         that:
           - example11_result is not failed
@@ -340,9 +350,8 @@
           - example11_result.serialNumber is string
           - example11_result.message.message is match("Enrollment was successful.")
 
-    - name: Assert example 12
-      always:
-        - name: Cleanup the directory
-          ansible.builtin.file:
-            path: '{{ tmpdir_path }}'
-            state: absent
+  always:
+    - name: Clean-up temporary folder
+      ansible.builtin.file:
+        path: '{{ tmpdir_path }}'
+        state: absent

@@ -1,4 +1,4 @@
 ---
 cagw_api_client_cert_path: '/tmp/cert.pem'
 cagw_api_client_cert_key_path: '/tmp/key.pem'
-entrust_cagw_api_specification_path: '~/entrust-ansible-collection/roles/common/files/cagw-api.yaml'
+entrust_cagw_api_specification_path: '/tmp/cagw-api.yaml'

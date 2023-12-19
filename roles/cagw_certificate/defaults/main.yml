@@ -1,7 +1,7 @@
 ---
 # vars file for galaxy-edc-roles
 
-cagw_certificate_working_path: ~/entrust-ansible-collection/roles/common
+cagw_certificate_working_path: ~/entrust-ansible-collection/roles/cagw_certificate
 # Values used for private key generation
 cagw_certificate_privatekey_path: '{{ cagw_certificate_working_path }}/files/prvkey.pem'
 cagw_certificate_privatekey_passphrase: Passphrase2525!
@@ -21,7 +21,7 @@ cagw_certificate_force: true
 cagw_certificate_entrust_text1: Admin
 cagw_certificate_entrust_text2: Invoice 25
 cagw_certificate_entrust_number1: 342
-cagw_certificate_entrust_date1: 2018-01-01
+cagw_certificate_entrust_date1: '2018-01-01'
 cagw_certificate_entrust_email1: sales@ansible.testcertificates.com
 cagw_certificate_validate_certs: false
 
