@@ -13,7 +13,7 @@ DOCUMENTATION = '''
 ---
 module: cagw_certificate
 author:
-    - Sapna Jain (@jains)
+    - Sapna Jain (@sapnajainEntrust)
 short_description: Request SSL/TLS certificates with the Certificate Authority Gateway (CAGW) API
 description:
     - Create, get, and take actions (Hold, Unhold, Revoke certificates) with the Certificate Authority Gateway (CAGW) API.
@@ -22,6 +22,8 @@ notes:
     - C(path) must be specified as the output location of the certificate.
 requirements:
     - cryptography >= 1.6
+    - Ansible Core >= 2.14.0
+    - Minimum Python Version = 3.6
 options:
     force:
         description:
