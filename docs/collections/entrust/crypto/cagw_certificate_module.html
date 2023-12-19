@@ -718,7 +718,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">    </span><span class="nt">csr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/csr/ansible.com.csr</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">certificate_profile_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">new</span>
 <span class="w">    </span><span class="nt">enrollment_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">X509</span>
@@ -731,7 +731,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">    </span><span class="nt">csr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/csr/ansible.com.csr</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">certificate_profile_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">new</span>
 <span class="w">    </span><span class="nt">enrollment_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">X509</span>
@@ -743,14 +743,14 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">      </span><span class="nt">directoryName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cn=john doe,o=example inc,c=us</span>
 <span class="w">      </span><span class="nt">uniformResourceIdentifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://example.com/</span>
 <span class="w">      </span><span class="nt">rfc822Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server.example.com</span>
-<span class="w">    </span><span class="nt">validate_certs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">    </span><span class="nt">validate_certs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get an already issued certificate from CAGW with valid serial num in hexadecimal format</span>
 <span class="w">  </span><span class="nt">entrust.crypto.cagw_certificate</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/crt/ansible.com.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get</span>
 <span class="w">    </span><span class="nt">serial_no</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5b9ba13d</span>
 <span class="w">    </span><span class="nt">cagw_api_specification_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-api.yaml</span>
@@ -760,7 +760,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/crt/ansible.com.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">certificate_profile_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">new</span>
 <span class="w">    </span><span class="nt">enrollment_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PKCS12</span>
@@ -775,7 +775,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">    </span><span class="nt">csr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/csr/ansible.com.csr</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">certificate_profile_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">new</span>
 <span class="w">    </span><span class="nt">enrollment_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">X509</span>
@@ -790,7 +790,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">    </span><span class="nt">csr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/csr/ansible.com.csr</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">certificate_profile_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">new</span>
 <span class="w">    </span><span class="nt">enrollment_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">X509</span>
@@ -810,7 +810,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">  </span><span class="nt">entrust.crypto.cagw_certificate</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">action</span>
 <span class="w">    </span><span class="nt">action_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HoldAction</span>
 <span class="w">    </span><span class="nt">action_reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unspecified</span>
@@ -821,7 +821,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">  </span><span class="nt">entrust.crypto.cagw_certificate</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">action</span>
 <span class="w">    </span><span class="nt">action_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UnholdAction</span>
 <span class="w">    </span><span class="nt">action_reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unspecified</span>
@@ -832,7 +832,7 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <span class="w">  </span><span class="nt">entrust.crypto.cagw_certificate</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.crt</span>
 <span class="w">    </span><span class="nt">cagw_api_client_cert_key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/entrust/cagw-client.key</span>
-<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
+<span class="w">    </span><span class="nt">certificate_authority_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca_id</span>
 <span class="w">    </span><span class="nt">request_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">action</span>
 <span class="w">    </span><span class="nt">action_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RevokeAction</span>
 <span class="w">    </span><span class="nt">action_reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unspecified</span>
