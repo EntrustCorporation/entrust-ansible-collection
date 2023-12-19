@@ -37,6 +37,10 @@ Then run:
 ansible-galaxy collection install -r requirements.yml
 ```
 
+# Release Notes
+
+See the release notes [here](https://github.com/EntrustCorporation/entrust-ansible-collection/blob/main/changelogs/changelog.yaml)
+
 # License
 
 See the [license](https://github.com/EntrustCorporation/entrust-ansible-collection/blob/main/LICENSE) for more information
