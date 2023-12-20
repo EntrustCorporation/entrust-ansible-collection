@@ -10,3 +10,8 @@ releases:
         name: cagw_certificate
         namespace: ''
     release_date: '2023-12-19'
+  1.0.1:
+    changes:
+      minor_changes::
+        - sanity - fix sanity errors suggested by Automation Hub
+    release_date: '2023-12-20'
