@@ -1,26 +1,11 @@
 ---
 # tasks file for certificate enrollment from CA via Entrust CAGW
 
-## SETUP CSR TO REQUEST
-- name: Generate a 2048 bit RSA private key
-  community.crypto.openssl_privatekey:
-    path: '{{ cagw_certificate_privatekey_path }}'
-    passphrase: '{{ cagw_certificate_privatekey_passphrase }}'
-    cipher: auto
-    type: RSA
-    size: 2048
-
-- name: Generate a certificate signing request using the generated key
-  community.crypto.openssl_csr:
-    path: '{{ cagw_certificate_csr_path }}'
-    privatekey_path: '{{ cagw_certificate_privatekey_path }}'
-    privatekey_passphrase: '{{ cagw_certificate_privatekey_passphrase }}'
-    common_name: '{{ cagw_certificate_common_name }}'
-    organization_name: '{{ cagw_certificate_organization_name | default(omit) }}'
-    locality_name: '{{ cagw_certificate_locality_name }}'
-    country_name: '{{ cagw_certificate_country_name | default(omit) }}'
-    state_or_province_name: '{{ cagw_certificate_state_or_province_name | default(omit) }}'
-    digest: sha256
+## Setup CSR and PrivateKey
+- name: Create CSR and private key
+  ansible.builtin.command: openssl req -nodes -newkey rsa:2048 -keyout {{ cagw_certificate_privatekey_path }}
+                           -out {{ cagw_certificate_csr_path }} -subj {{ cagw_certificate_csr_dn }}
+  changed_when: false
 
 - name: Request a signed certificate from CA(SM/PKIaaS/MSCA) via Entrust CAGW with bare minimum parameters
   entrust.crypto.cagw_certificate:

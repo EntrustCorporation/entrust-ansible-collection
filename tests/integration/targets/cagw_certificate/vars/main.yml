@@ -10,12 +10,7 @@
 # that ansible "urls" module utility is using as a backing.
 cacerts_bundle_path: /etc/pki/tls/certs
 
-common_name: Default Ltd
-organization_name: Ent
-locality_name: Kanata
-country_name: CA
-state_or_province_name: ontario
-privatekey_passphrase: Passphrase2525!
+csr_dn: /C=CA/ST=ontario/L=Kanata/O=entrust/OU=Devices/CN=Entrust
 tmpdir_path: /tmp/cagw_cert_test/{{ ansible_date_time.epoch }}
 privatekey_path: '{{ tmpdir_path }}/testcertificates.key'
 entrust_cagw_api_cert: '{{ tmpdir_path }}/authcert.cer'
@@ -37,7 +32,7 @@ entrust_date1: '2018-01-01'
 entrust_email1: sales@ansible.testcertificates.com
 validate_certs: false
 entrust_host: 1.1.1.1
-entrust_port: 8080
+entrust_port: 443
 
 # TEST 1
 example1_cert_path: '{{ tmpdir_path }}/issuedcert_1.pem'
@@ -105,8 +100,9 @@ example10_cagw_api_key: /tmp/key_pkiaas.pem
 
 # TEST 11
 example11_entrust_host: 1.1.1.1
-example11_entrust_port: 8084
+example11_entrust_port: 443
 example11_csr_path: '{{ tmpdir_path }}/msca.csr'
+example11_privatekey_path: '{{ tmpdir_path }}/msca.pvk'
 example11_cert_path: '{{ tmpdir_path }}/issuedcert_11.pem'
 example11_request_type: new
 example11_enrollment_format: X509
@@ -114,3 +110,4 @@ example11_ca_id: ca_id
 example11_profile_id: profile_id
 example11_cagw_api_cert: /tmp/cert_msca.pem
 example11_cagw_api_key: /tmp/key_msca.pem
+example11_csr_dn: /CN=sapnaMSCA/DC=igqatestca/DC=dev/DC=datacard/DC=com

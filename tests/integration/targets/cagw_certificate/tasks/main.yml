@@ -48,34 +48,15 @@
     dest: '{{ cagw_api_specification_path }}'
     mode: preserve
 
-## SETUP CSR TO REQUEST
-- name: Generate a 2048 bit RSA private key
-  community.crypto.openssl_privatekey:
-    path: '{{ privatekey_path }}'
-    passphrase: '{{ privatekey_passphrase }}'
-    cipher: auto
-    type: RSA
-    size: 2048
-
-- name: Generate a certificate signing request using the generated key
-  community.crypto.openssl_csr:
-    path: '{{ csr_path }}'
-    privatekey_path: '{{ privatekey_path }}'
-    privatekey_passphrase: '{{ privatekey_passphrase }}'
-    common_name: '{{ common_name }}'
-    organization_name: '{{ organization_name | default(omit) }}'
-    locality_name: '{{ locality_name }}'
-    country_name: '{{ country_name | default(omit) }}'
-    state_or_province_name: '{{ state_or_province_name | default(omit) }}'
-    digest: sha256
+## Setup CSR and PrivateKey
+- name: Create CSR and private key
+  ansible.builtin.command: openssl req -nodes -newkey rsa:2048 -keyout {{ privatekey_path }} -out {{ csr_path }} -subj {{ csr_dn }}
+  changed_when: false
 
 - name: Generate a certificate signing request for Microsoft CA using the generated key
-  community.crypto.openssl_csr:
-    path: '{{ example11_csr_path }}'
-    privatekey_path: '{{ privatekey_path }}'
-    privatekey_passphrase: '{{ privatekey_passphrase }}'
-    subject: 'CN=sapnaMSCA,DC=igqatestca,DC=dev,DC=datacard,DC=com'
-    digest: sha256
+  ansible.builtin.command: openssl req -nodes -newkey rsa:2048 -keyout {{ example11_privatekey_path }} -out {{ example11_csr_path }}
+                           -subj {{ example11_csr_dn }}
+  changed_when: false
 
 - name: Task block for Entrust CAGW tests
   block:

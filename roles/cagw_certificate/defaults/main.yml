@@ -4,18 +4,13 @@
 cagw_certificate_working_path: /tmp
 # Values used for private key generation
 cagw_certificate_privatekey_path: '{{ cagw_certificate_working_path }}/prvkey.pem'
-cagw_certificate_privatekey_passphrase: Passphrase2525!
 
 # Values used for the CSR generation
 cagw_certificate_csr_path: '{{ cagw_certificate_working_path }}/csr.pem'
-cagw_certificate_common_name: cn
-cagw_certificate_organization_name: org_name
-cagw_certificate_locality_name: Kanata
-cagw_certificate_country_name: CA
-cagw_certificate_state_or_province_name: ontario
+cagw_certificate_csr_dn: /C=CA/ST=ontario/L=Kanata/O=entrust/OU=Devices/CN=Entrust
 
 cagw_certificate_entrust_host: 1.1.1.1
-cagw_certificate_entrust_port: 8081
+cagw_certificate_entrust_port: 443
 cagw_certificate_remaining_days: 30
 cagw_certificate_force: true
 cagw_certificate_entrust_text1: Admin
@@ -47,7 +42,7 @@ cagw_certificate_directoryname: cn=john doe,o=example inc,c=us
 cagw_certificate_uri: http://example.com/
 
 # Example 3
-cagw_certificate_serialnumber: 5e3661f26a408a3cb236923b531b
+cagw_certificate_serialnumber: fa812016cc690e79f91f9d0b86ea85
 
 # Example 4
 cagw_certificate_p12_password: Password@2018
