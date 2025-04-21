@@ -521,6 +521,22 @@ see <a class="reference internal" href="#ansible-collections-entrust-crypto-cagw
 <td><div class="ansible-option-cell"><p>Distinguished name given for the enrollment.</p>
 </div></td>
 </tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-validity_period"></div><p class="ansible-option-title" id="ansible-collections-entrust-crypto-cagw-certificate-module-parameter-validity_period"><strong>validity_period</strong></p>
+<a class="ansibleOptionLink" href="#parameter-validity_period" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<p>The certificate validity period.</p>
+<p>An ISO 8601 date-time interval or duration indicating the "not before" and/or "not after" dates of the certificate.</p>
+<p>Specify the start date and expiry date:</p>
+<p>"2018-07-06T13:00Z/2019-07-06T13:00:00Z"</p>
+<p>Specify the start date and a duration. Start on July 6, 2018 13:00Z with a lifetime of 1 year and 3 months:</p>
+<p>"2018-07-06T13:00Z/P1Y3M0DT0H0M"</p>
+<p>Specify the expiry date and a duration. Expire on December 31, 2018 with a lifetime of 3 months (the start date will be automatically calculated):</p>
+<p>"P0Y3M0DT0H0M/2018-12-31T00:00Z"</p>
+<p>Specify a duration only. A lifetime of 1 year, 3 months, 10 days, 0 hours and 0 minutes. The start date will always be the current date:</p>
+<p>"P1Y3M10DT0H0M"</p>
+</div></td>
+</tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-enrollment_format"></div><p class="ansible-option-title" id="ansible-collections-entrust-crypto-cagw-certificate-module-parameter-enrollment-format"><strong>enrollment_format</strong></p>
 <a class="ansibleOptionLink" href="#parameter-enrollment_format" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
