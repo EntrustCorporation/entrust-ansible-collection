@@ -38,6 +38,7 @@
     request_type: '{{ cagw_certificate_request_type }}'
     enrollment_format: '{{ cagw_certificate_enrollment_format }}'
     connector_name: SM
+    validity_period: '{{ cagw_certificate_validity_period }}'
     subject_alt_name:
       dNSName: '{{ cagw_certificate_dnsname }}'
       iPAddress: '{{ cagw_certificate_ipaddress }}'

@@ -40,6 +40,10 @@ cagw_certificate_dnsname: example.com
 cagw_certificate_ipaddress: 1.1.1.1
 cagw_certificate_directoryname: cn=john doe,o=example inc,c=us
 cagw_certificate_uri: http://example.com/
+cagw_certificate_validity_period: "2025-04-22T09:00Z/2026-04-22T09:00:00Z"
+#cagw_certificate_validity_period: "2025-04-22T09:00Z/P1Y3M0DT0H0M"
+#cagw_certificate_validity_period: "P0Y3M0DT0H0M/2025-12-31T00:00Z"
+#cagw_certificate_validity_period: "P1Y3M10DT0H0M"
 
 # Example 3
 cagw_certificate_serialnumber: fa812016cc690e79f91f9d0b86ea85
