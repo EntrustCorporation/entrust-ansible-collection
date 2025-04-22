@@ -127,6 +127,20 @@ options:
             - Distinguished name given for the enrollment.
         type: str
 
+    validity_period:
+        description:
+            - The certificate validity period. An ISO 8601 date-time interval or duration indicating the
+              C(not before) and/or C(not after) dates of the certificate.
+            - Specify the start date and expiry date as follows
+              C(2018-07-06T13:00Z/2019-07-06T09:00:00Z)
+            - Specify the start date and a duration. Start on July 6, 2018 13:00Z with a lifetime of 1 year and 3 months.
+              C(2018-07-06T13:00Z/P1Y3M0DT0H0M)
+            - Specify the expiry date and a duration. Expire on December 31, 2018 with a lifetime of 3 months. B(Note) that the start date will be automatically calculated.
+              C(P0Y3M0DT0H0M/2018-12-31T00:00Z)
+            - Specify a duration only. A lifetime of 1 year, 3 months, 10 days, 0 hours and 0 minutes. B(Note) that the start date will always be the current date.
+              C(P1Y3M10DT0H0M)
+        type: str
+
     cagw_api_specification_path:
         description:
             - Path for CAGW api specification doc.
@@ -342,6 +356,7 @@ EXAMPLES = r'''
     enrollment_format: X509
     connector_name: SM
     cagw_api_specification_path: /etc/ssl/entrust/cagw-api.yaml
+    validity_period: 2018-07-06T13:00Z/2019-07-06T09:00:00Z
     subject_alt_name:
       dNSName: server.example.com
       iPAddress: 192.168.1.1
@@ -459,7 +474,7 @@ serial_number:
     sample: 5b9ba13d
 
 cert_days:
-    description: The number of days the certificate remains valid.
+    description: The number of days the certificate remains valid from now.
     returned: success
     type: int
     sample: 253
@@ -495,7 +510,8 @@ from ansible_collections.entrust.crypto.plugins.module_utils.cagw.api import (
     SessionConfigurationException,
 )
 
-import datetime
+from dateutil.parser import parse
+from datetime import datetime, timezone
 import os
 import traceback
 
@@ -526,8 +542,8 @@ def calculate_cert_days(validityPeriod):
     expiresAfter = expiry[1]
     cert_days = 0
     if expiresAfter:
-        expires_after_datetime = datetime.datetime.strptime(expiresAfter, '%Y-%m-%dT%H:%M:%SZ')
-        cert_days = (expires_after_datetime - datetime.datetime.now()).days
+        expires_after_datetime = parse(expiresAfter)
+        cert_days = (expires_after_datetime - datetime.now(timezone.utc)).days
     return cert_days
 
 
@@ -591,6 +607,8 @@ class CagwCertificate(object):
         body = {}
         optionalCertificateRequestDetails = {}
         optionalCertificateRequestDetails['subjectDn'] = module.params['dn']
+        if module.params['validity_period']:
+            optionalCertificateRequestDetails['validityPeriod'] = module.params['validity_period']
         body['optionalCertificateRequestDetails'] = optionalCertificateRequestDetails
         return body
 
@@ -829,6 +847,7 @@ def cagw_certificate_argument_spec():
         serial_no=dict(type='str'),
         p12_protection_password=dict(type='str', no_log=True),
         dn=dict(type='str'),
+        validity_period=dict(type='str'),
         certificate_profile_id=dict(type='str'),
         csr=dict(type='path'),
         remaining_days=dict(type='int', default=30),
